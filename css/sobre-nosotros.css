@@ -1,0 +1,464 @@
+/* ========================================
+   1. VARIABLES
+   Paleta clara: fondo crema + un solo verde
+   + ámbar como toque puntual (sin verde sobre verde)
+======================================== */
+:root {
+    --color-fondo: #F7F5EF;
+    --color-superficie: #FFFFFF;
+    --color-suave: #EBF2ED;
+    --color-texto: #17231D;
+    --color-texto-suave: #5B6B63;
+    --color-primario: #1E6B4E;
+    --color-primario-oscuro: #17543D;
+    --color-acento: #F2B544;
+    --color-borde: #E3E5DC;
+
+    --fuente-titulos: "Bricolage Grotesque", sans-serif;
+    --fuente-texto: "Plus Jakarta Sans", sans-serif;
+
+    --radio: 20px;
+    --sombra: 0 10px 30px rgba(23, 35, 29, 0.07);
+
+    /* Para cuando exista el navbar fijo: ajustar esta altura
+       y descomentar la regla de "main" más abajo */
+    --altura-navbar: 72px;
+}
+
+/* ========================================
+   2. BASE
+======================================== */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--altura-navbar);
+}
+
+body {
+    font-family: var(--fuente-texto);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+}
+
+h1, h2, h3 {
+    font-family: var(--fuente-titulos);
+    color: var(--color-texto);
+    line-height: 1.15;
+}
+
+p {
+    color: var(--color-texto-suave);
+    line-height: 1.7;
+}
+
+/* Si el navbar es position: fixed, descomentar:
+main {
+    padding-top: var(--altura-navbar);
+}
+*/
+
+/* ========================================
+   3. SECCIONES (ritmo vertical)
+   Cada sección maneja su propio espacio,
+   así navbar y footer nunca chocan con ellas.
+======================================== */
+.seccion {
+    padding-block: clamp(3rem, 7vw, 5.5rem);
+}
+
+.seccion-suave {
+    background-color: var(--color-suave);
+}
+
+.encabezado-seccion {
+    margin-bottom: 2.5rem;
+}
+
+.encabezado-seccion h2 {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.encabezado-seccion p {
+    margin-bottom: 0;
+}
+
+.encabezado-con-controles {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+/* ========================================
+   4. HERO
+======================================== */
+.etiqueta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    background-color: var(--color-suave);
+    color: var(--color-primario);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+}
+
+.hero-titulo {
+    font-size: clamp(2.75rem, 7vw, 5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+}
+
+.hero-texto {
+    font-size: 1.2rem;
+    max-width: 32rem;
+    margin-bottom: 0;
+}
+
+.hero-logo {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    min-height: 280px;
+    border-radius: 32px;
+    background-color: var(--color-suave);
+    overflow: hidden;
+}
+
+/* Círculo decorativo ámbar */
+.hero-logo::before {
+    content: "";
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: var(--color-acento);
+    top: -40px;
+    right: -30px;
+    opacity: 0.9;
+}
+
+.hero-logo-icono {
+    position: relative;
+    font-size: 4rem;
+    color: var(--color-primario);
+}
+
+.hero-logo-texto {
+    position: relative;
+    font-weight: 600;
+    color: var(--color-texto);
+}
+
+/* ========================================
+   5. MISIÓN Y VISIÓN
+======================================== */
+.tarjeta {
+    height: 100%;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    border-radius: var(--radio);
+}
+
+.tarjeta-icono {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 14px;
+    font-size: 1.4rem;
+    margin-bottom: 1.25rem;
+}
+
+.tarjeta-titulo {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.tarjeta p {
+    margin-bottom: 0;
+}
+
+/* Misión: blanca */
+.tarjeta-mision {
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    box-shadow: var(--sombra);
+}
+
+.tarjeta-mision .tarjeta-icono {
+    background-color: var(--color-suave);
+    color: var(--color-primario);
+}
+
+/* Visión: único bloque verde sólido de la página */
+.tarjeta-vision {
+    background-color: var(--color-primario);
+}
+
+.tarjeta-vision .tarjeta-titulo {
+    color: #FFFFFF;
+}
+
+.tarjeta-vision p {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.tarjeta-vision .tarjeta-icono {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--color-acento);
+}
+
+/* ========================================
+   6. VALORES
+======================================== */
+.valor {
+    position: relative;
+    height: 100%;
+    padding: 1.75rem;
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.valor:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sombra);
+}
+
+.valor-numero {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.5rem;
+    font-family: var(--fuente-titulos);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-borde);
+}
+
+.valor-icono {
+    display: block;
+    font-size: 1.75rem;
+    color: var(--color-primario);
+    margin-bottom: 1rem;
+}
+
+.valor h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.valor p {
+    margin-bottom: 0;
+}
+
+/* ========================================
+   7. EQUIPO: carrusel de tarjetas en profundidad
+   La tarjeta activa (--o: 0) va al centro;
+   las demás se corren, se achican y se oscurecen.
+======================================== */
+.controles-carrusel {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.boton-flecha {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    border: 1px solid var(--color-borde);
+    background-color: var(--color-superficie);
+    color: var(--color-texto);
+    font-size: 1.1rem;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.boton-flecha:hover {
+    background-color: var(--color-primario);
+    border-color: var(--color-primario);
+    color: #FFFFFF;
+}
+
+.equipo-escenario {
+    position: relative;
+    height: 600px;
+    overflow: hidden;
+    padding-top: 1rem;
+    touch-action: pan-y;
+    user-select: none;
+    outline-offset: 4px;
+}
+
+.miembro {
+    --o: 0;
+    --a: 0;
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    width: min(320px, 76vw);
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-superficie);
+    border: 2px solid var(--color-borde);
+    border-radius: 28px;
+    overflow: hidden;
+    cursor: pointer;
+
+    transform: translateX(-50%) translateX(calc(var(--o) * 62%)) scale(calc(1 - var(--a) * 0.13));
+    z-index: calc(10 - var(--a));
+    transition: transform 0.55s cubic-bezier(0.22, 0.8, 0.28, 1),
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+/* Las que están muy lejos no se ven */
+.miembro.oculta {
+    visibility: hidden;
+}
+
+.miembro::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-fondo);
+    opacity: calc(var(--a) * 0.4);
+    pointer-events: none;
+    transition: opacity 0.55s ease;
+}
+
+.miembro.activo {
+    cursor: default;
+    border-color: var(--color-primario);
+    box-shadow: 0 24px 50px rgba(23, 35, 29, 0.16);
+}
+
+.miembro-foto {
+    flex: 0 0 auto;
+    display: block;
+    width: 190px;
+    height: 190px;
+    margin: 1.5rem auto 0;
+    object-fit: cover;
+    object-position: center 20%;   /* prioriza la parte de arriba: el rostro */
+    border-radius: 24px;
+    border: 3px solid var(--color-borde);
+    filter: grayscale(0.7);
+    transition: filter 0.4s ease, border-color 0.3s ease;
+}
+
+.miembro.activo .miembro-foto {
+    filter: none;
+    border-color: var(--color-acento);
+}
+
+.miembro-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 1.25rem 1.5rem 1.5rem;
+}
+
+.miembro h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+}
+
+.miembro-rol {
+    color: var(--color-primario);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.miembro-bio {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    margin-bottom: 1rem;
+}
+
+.miembro-enlace {
+    align-self: flex-start;
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    background-color: var(--color-suave);
+    color: var(--color-primario);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.miembro-enlace:hover {
+    background-color: var(--color-primario);
+    color: #FFFFFF;
+}
+
+/* Solo se puede abrir el GitHub de la tarjeta del centro */
+.miembro:not(.activo) .miembro-enlace {
+    pointer-events: none;
+}
+
+/* Puntos de navegación */
+.equipo-puntos {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.equipo-puntos button {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background-color: var(--color-borde);
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.equipo-puntos button.activo {
+    width: 32px;
+    background-color: var(--color-primario);
+}
+
+/* ========================================
+   8. CELULARES
+======================================== */
+@media (max-width: 576px) {
+    .hero-logo {
+        min-height: 200px;
+    }
+
+    .equipo-escenario {
+        height: 650px;
+    }
+
+    .miembro {
+        height: 600px;
+    }
+
+    .miembro-foto {
+        width: 160px;
+        height: 160px;
+    }
+}
