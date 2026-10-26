@@ -15,5 +15,5 @@ Cristian David Valencia Mora
 
 Leoneider Gonzalez
 
-
-
+# Link de pagina sobre nosotros
+https://sorannycuesta.github.io/ParcheGol/sobre-nosotros.html
