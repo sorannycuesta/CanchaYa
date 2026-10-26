@@ -260,7 +260,7 @@
     </main>
 
     <!-- FOOTER: pegar aquí el <footer> cuando esté listo -->
-    <!-- <footer class="footer-sitio"> ... </footer> -->
+        
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -277,8 +277,8 @@
             function mostrar(indice) {
                 actual = (indice + total) % total;
                 tarjetas.forEach((tarjeta, k) => {
-                    let o = k - actual;                       // posición respecto al centro
-                    if (o > total / 2) o -= total;            // da la vuelta (carrusel infinito)
+                    let o = k - actual;                      
+                    if (o > total / 2) o -= total;           
                     if (o < -total / 2) o += total;
                     tarjeta.style.setProperty('--o', o);
                     tarjeta.style.setProperty('--a', Math.abs(o));
