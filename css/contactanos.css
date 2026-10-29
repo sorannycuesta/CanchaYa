@@ -48,7 +48,7 @@ body {
     line-height: 1.5;
     background: linear-gradient(180deg, #F0F9FF, #FFFFFF);
     color: var(--color-texto);
-    background-image: url('/ParcheGol/img/fut.jpeg');
+    background-image: url('../img/fut.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -160,3 +160,17 @@ body {
     filter: brightness(0) invert(1);
 }
 
+
+/* Borde verde / rojo en el contenedor */
+.input-group:has(.is-valid) {
+  border-color: var(--bs-success) !important;
+}
+.input-group:has(.is-invalid) {
+  border-color: var(--bs-danger) !important;
+}
+
+/* Mostrar el mensaje que va fuera del input-group */
+.input-group:has(.is-valid) + .valid-feedback,
+.input-group:has(.is-invalid) + .invalid-feedback {
+  display: block;
+}
