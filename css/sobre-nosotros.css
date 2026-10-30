@@ -1,19 +1,28 @@
 /* ========================================
    1. VARIABLES
    Guía de estilo ParcheGol: paleta azul + escala de espacios
+   Versión "noche de final": fondo oscuro como en Inicio y Contacto
 ======================================== */
 :root {
     /* Paleta oficial */
-    --color-1: #0A1F6E;            /* header, footer, títulos sobre fondo claro */
+    --color-1: #0A1F6E;            /* header, footer */
     --color-2: #45BDDE;            /* acentos, íconos, líneas decorativas */
-    --color-3: #FFFFFF;            /* fondo de página y tarjetas, texto sobre oscuro */
-    --color-4: #206FC9;            /* botones principales, enlaces */
+    --color-3: #FFFFFF;            /* texto sobre oscuro, logo */
+    --color-4: #206FC9;            /* botones principales */
     --color-5: #07417F;            /* hover de botones, bloques oscuros (banner) */
 
-    /* Derivados (la guía no los define; ajustar si hace falta) */
-    --color-suave: #E8F6FA;        /* color-2 muy diluido: fondos suaves de sección */
-    --color-texto: #33415C;        /* texto de párrafos */
-    --color-borde: #D5DEEA;
+    /* Modo noche (nuevo) */
+    --fondo-noche: #040D2E;        /* fondo general, igual al de Contacto */
+    --fondo-noche-alt: #07163F;    /* secciones alternas (reemplaza el celeste claro) */
+    --tarjeta-noche: rgba(255, 255, 255, 0.05);   /* tarjetas tipo vidrio */
+    --tarjeta-noche-solida: #0B1A4A;              /* tarjetas que se superponen (carrusel) */
+    --borde-noche: rgba(69, 189, 222, 0.25);
+    --texto-claro: #B8C7E0;        /* párrafos sobre oscuro */
+
+    /* Derivados anteriores (se conservan por si los usas en otras páginas) */
+    --color-suave: #07163F;
+    --color-texto: #B8C7E0;
+    --color-borde: rgba(69, 189, 222, 0.25);
 
     /* Tipografía */
     --fuente-titulos: "Bricolage Grotesque", sans-serif;
@@ -29,7 +38,7 @@
     /* Formas */
     --radio-boton: 8px;
     --radio-tarjeta: 16px;
-    --sombra: 0 2px 8px rgba(10, 31, 110, 0.12);
+    --sombra: 0 4px 16px rgba(0, 0, 0, 0.35);
 
     /* Medidas de contenido */
     --ancho-contenido: 1140px;
@@ -47,14 +56,15 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: var(--altura-navbar);
+    background-color: var(--fondo-noche);   /* evita destellos blancos al hacer scroll rápido */
 }
 
 body {
     font-family: var(--fuente-texto);
     font-size: 16px;
     line-height: 1.5;
-    background-color: var(--color-3);
-    color: var(--color-texto);
+    background-color: var(--fondo-noche);
+    color: var(--texto-claro);
 }
 
 /* Ancho máximo del contenido (Bootstrap llega a 1320 en pantallas muy grandes) */
@@ -66,7 +76,7 @@ h1, h2, h3, h4 {
     font-family: var(--fuente-titulos);
     font-weight: 700;
     line-height: 1.2;
-    color: var(--color-1);
+    color: var(--color-3);
 }
 
 h1 { font-size: 40px; }
@@ -78,7 +88,7 @@ p {
     max-width: var(--ancho-texto);
     font-size: 16px;
     line-height: 1.5;
-    color: var(--color-texto);
+    color: var(--texto-claro);
 }
 
 small,
@@ -87,16 +97,16 @@ small,
 }
 
 a {
-    color: var(--color-4);
+    color: var(--color-2);
 }
 
 a:hover {
-    color: var(--color-5);
+    color: var(--color-3);
 }
 
 /* Foco visible para teclado */
 :focus-visible {
-    outline: 2px solid var(--color-4);
+    outline: 2px solid var(--color-2);
     outline-offset: 2px;
 }
 
@@ -113,10 +123,11 @@ main {
 ======================================== */
 .seccion {
     padding-block: var(--esp-5);
+    background-color: var(--fondo-noche);
 }
 
 .seccion-suave {
-    background-color: var(--color-suave);
+    background-color: var(--fondo-noche-alt);
 }
 
 .encabezado-seccion {
@@ -140,13 +151,13 @@ main {
 
 /* ========================================
    4. HERO / BANNER (480px escritorio, 360px celular)
-   Bloque oscuro en color-5
+   Degradé de la noche al azul del banner, como en Contacto
 ======================================== */
 .hero {
     display: flex;
     align-items: center;
     min-height: var(--altura-banner);
-    background-color: var(--color-5);
+    background: linear-gradient(135deg, var(--fondo-noche) 0%, var(--color-5) 100%);
 }
 
 .hero > .container {
@@ -155,7 +166,7 @@ main {
 
 /* La sección de misión y visión */
 .hero + .seccion {
-    margin-top: var(--esp-5);
+    margin-top: 0;   /* antes dejaba ver el fondo de página; ahora todo es oscuro */
 }
 
 .etiqueta {
@@ -195,6 +206,7 @@ main {
     color: rgba(255, 255, 255, 0.9);
 }
 
+/* El logo conserva su recuadro blanco porque el PNG trae fondo blanco */
 .hero-logo {
     display: flex;
     align-items: center;
@@ -204,7 +216,7 @@ main {
     border-radius: var(--radio-tarjeta);
     background-color: var(--color-3);
     border: 2px solid var(--color-2);
-    box-shadow: var(--sombra);
+    box-shadow: 0 0 24px rgba(69, 189, 222, 0.35);
 }
 
 .hero-logo-img {
@@ -240,22 +252,22 @@ main {
     margin-bottom: 0;
 }
 
-/* Misión: blanca */
+/* Misión: vidrio oscuro con borde cian */
 .tarjeta-mision {
-    background-color: var(--color-3);
-    border: 1px solid var(--color-borde);
+    background-color: var(--tarjeta-noche);
+    border: 1px solid var(--borde-noche);
     box-shadow: var(--sombra);
 }
 
 .tarjeta-mision .tarjeta-icono {
-    background-color: var(--color-1);
+    background-color: rgba(69, 189, 222, 0.12);
     color: var(--color-2);
 }
 
-/* Visión: bloque oscuro */
+/* Visión: bloque azul con acento cian, para que siga destacando */
 .tarjeta-vision {
-    background-color: var(--color-5);
-    border: 1px solid var(--color-5);
+    background: linear-gradient(135deg, var(--color-5), var(--color-4));
+    border: 1px solid var(--color-2);
     box-shadow: var(--sombra);
 }
 
@@ -264,11 +276,11 @@ main {
 }
 
 .tarjeta-vision p {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.92);
 }
 
 .tarjeta-vision .tarjeta-icono {
-    background-color: rgba(255, 255, 255, 0.12);
+    background-color: rgba(255, 255, 255, 0.15);
     color: var(--color-2);
 }
 
@@ -279,16 +291,17 @@ main {
     position: relative;
     height: 100%;
     padding: var(--esp-3);
-    background-color: var(--color-3);
-    border: 1px solid var(--color-borde);
+    background-color: var(--tarjeta-noche);
+    border: 1px solid var(--borde-noche);
     border-radius: var(--radio-tarjeta);
     box-shadow: var(--sombra);
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .valor:hover {
     transform: translateY(-4px);
     border-color: var(--color-2);
+    box-shadow: 0 0 16px rgba(69, 189, 222, 0.25);
 }
 
 .valor-numero {
@@ -299,7 +312,7 @@ main {
     font-size: 20px;
     font-weight: 700;
     line-height: 1.2;
-    color: var(--color-borde);
+    color: rgba(69, 189, 222, 0.4);
 }
 
 .valor-icono {
@@ -309,7 +322,7 @@ main {
     width: 48px;
     height: 48px;
     border-radius: var(--radio-boton);
-    background-color: var(--color-1);
+    background-color: rgba(69, 189, 222, 0.12);
     color: var(--color-2);
     font-size: 24px;
     margin-bottom: var(--esp-2);
@@ -327,7 +340,7 @@ main {
 /* ========================================
    7. EQUIPO: carrusel de tarjetas en profundidad
    La tarjeta activa (--o: 0) va al centro;
-   las demás se corren, se achican y se aclaran.
+   las demás se corren, se achican y se oscurecen.
 ======================================== */
 .controles-carrusel {
     display: flex;
@@ -342,17 +355,17 @@ main {
     width: 44px;
     height: 44px;
     border-radius: var(--radio-boton);
-    border: 2px solid var(--color-4);
-    background-color: var(--color-3);
-    color: var(--color-4);
+    border: 2px solid var(--color-2);
+    background-color: transparent;
+    color: var(--color-2);
     font-size: 18px;
     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 .boton-flecha:hover {
-    background-color: var(--color-5);
-    border-color: var(--color-5);
-    color: var(--color-3);
+    background-color: var(--color-2);
+    border-color: var(--color-2);
+    color: var(--fondo-noche);
 }
 
 .equipo-escenario {
@@ -365,6 +378,7 @@ main {
     outline-offset: 4px;
 }
 
+/* Las tarjetas se superponen, por eso el fondo es sólido (no transparente) */
 .miembro {
     --o: 0;
     --a: 0;
@@ -375,8 +389,8 @@ main {
     height: 550px;
     display: flex;
     flex-direction: column;
-    background-color: var(--color-3);
-    border: 2px solid var(--color-borde);
+    background-color: var(--tarjeta-noche-solida);
+    border: 2px solid var(--borde-noche);
     border-radius: var(--radio-tarjeta);
     overflow: hidden;
     cursor: pointer;
@@ -393,20 +407,21 @@ main {
     visibility: hidden;
 }
 
+/* Antes aclaraba con blanco; ahora oscurece con el fondo de noche */
 .miembro::after {
     content: "";
     position: absolute;
     inset: 0;
-    background-color: var(--color-3);
-    opacity: calc(var(--a) * 0.4);
+    background-color: var(--fondo-noche);
+    opacity: calc(var(--a) * 0.5);
     pointer-events: none;
     transition: opacity 0.55s ease;
 }
 
 .miembro.activo {
     cursor: default;
-    border-color: var(--color-4);
-    box-shadow: var(--sombra);
+    border-color: var(--color-2);
+    box-shadow: 0 0 24px rgba(69, 189, 222, 0.3);
 }
 
 .miembro-foto {
@@ -418,7 +433,7 @@ main {
     object-fit: cover;
     object-position: center 20%;   /* prioriza la parte de arriba: el rostro */
     border-radius: var(--radio-tarjeta);
-    border: 2px solid var(--color-borde);
+    border: 2px solid var(--borde-noche);
     filter: grayscale(0.7);
     transition: filter 0.4s ease, border-color 0.3s ease;
 }
@@ -441,7 +456,7 @@ main {
 }
 
 .miembro-rol {
-    color: var(--color-4);
+    color: var(--color-2);
     font-size: 14px;
     font-weight: 600;
     margin-bottom: var(--esp-1);
@@ -474,8 +489,8 @@ main {
 }
 
 .miembro-enlace:hover {
-    background-color: var(--color-5);
-    color: var(--color-3);
+    background-color: var(--color-2);
+    color: var(--fondo-noche);
 }
 
 /* Solo se puede abrir el GitHub de la tarjeta del centro */
@@ -497,13 +512,13 @@ main {
     padding: 0;
     border: 0;
     border-radius: 999px;
-    background-color: var(--color-borde);
+    background-color: rgba(255, 255, 255, 0.25);
     transition: width 0.3s ease, background-color 0.3s ease;
 }
 
 .equipo-puntos button.activo {
     width: 32px;
-    background-color: var(--color-4);
+    background-color: var(--color-2);
 }
 
 /* ========================================
