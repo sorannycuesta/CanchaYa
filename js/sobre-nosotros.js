@@ -1,4 +1,4 @@
- // Carrusel del equipo: la tarjeta activa va al centro y las demás quedan atrás
+ // Carrusel del equipo: la tarjeta activa va al centro y las demas quedan detras 
         (function () {
             const escenario = document.getElementById('equipoEscenario');
             const tarjetas = [...escenario.querySelectorAll('.miembro')];
