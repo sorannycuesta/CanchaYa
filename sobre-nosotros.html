@@ -14,11 +14,23 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/sobre-nosotros.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    
+    
+
+    <script src="https://kit.fontawesome.com/2b9c7542e8.js" crossorigin="anonymous"></script>
+    <script src="js/main.js" defer></script>
+
 </head>
 
 <body class="d-flex flex-column min-vh-100">
 
     <!-- NAVBAR: pegar aquí el <header> / <nav> cuando esté listo -->
+    <header>
+        <app-sidebar></app-sidebar>
+
+    </header>
+
     <!-- <header class="navbar-sitio"> ... </header> -->
 
     <!-- Todo el contenido propio de la página vive dentro de <main>.
@@ -43,7 +55,8 @@
                     <div class="col-12 col-lg-5">
                         <!-- Reemplazar el contenido de este bloque por <img> cuando exista el logo -->
                         <div class="hero-logo">
-                            <img src="img/Logo ParcheGol_principal.png" alt="Logo de ParcheGol" class="img-fluid hero-logo-img">
+                            <img src="img/Logo ParcheGol_principal.png" alt="Logo de ParcheGol"
+                                class="img-fluid hero-logo-img">
                         </div>
                     </div>
 
@@ -260,7 +273,7 @@
     </main>
 
     <!-- FOOTER: pegar aquí el <footer> cuando esté listo -->
-        
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -277,8 +290,8 @@
             function mostrar(indice) {
                 actual = (indice + total) % total;
                 tarjetas.forEach((tarjeta, k) => {
-                    let o = k - actual;                      
-                    if (o > total / 2) o -= total;           
+                    let o = k - actual;
+                    if (o > total / 2) o -= total;
                     if (o < -total / 2) o += total;
                     tarjeta.style.setProperty('--o', o);
                     tarjeta.style.setProperty('--a', Math.abs(o));

@@ -1,0 +1,183 @@
+:root {
+    --nav-icon: rgba(255, 255, 255, 0.7);
+    --nav-accent: #5eead4;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+/* Fondo de prueba: con color liso el blur no se nota */
+.back {
+    min-height: 2000px;
+    background: linear-gradient(180deg, #042b52 0%, #0b5a8f 35%, #1b8a9c 65%, #042b52 100%);
+}
+
+/* ---------- Contenedor glass ---------- */
+.nav_flotante {
+    position: fixed;
+    top: 50%;
+    left: 20px;
+    right: auto;
+    transform: translateY(-50%);
+    z-index: 1000;
+    padding: 12px 8px;
+    border-radius: 20px;
+    background: rgba(180, 215, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+        animation: aparecer 0.6s ease both;
+
+}
+
+.ul_nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+        z-index: 1000;
+
+}
+
+/* ---------- Enlaces ---------- */
+.link_nav {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    font-size: 1.25rem;
+    color: var(--nav-icon);
+    text-decoration: none;
+    transition: color 0.25s ease;
+        z-index: 1000;
+
+}
+/* --------- Tooltip para mostrar descripcion en el nav ---------- */
+.link_nav::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: calc(100% + 12px);
+    top: 50%;
+    transform: translateY(-50%);
+    width: max-content;
+    max-width: min(220px, 60vw);
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-size: 0.875rem;
+    line-height: 1.3;
+    color: #fff;
+    background: rgba(4, 43, 82, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+/* Cuando la barra está a la derecha, el globito sale hacia la izquierda */
+.nav_flotante.derecha .link_nav::before {
+    left: auto;
+    right: calc(100% + 12px);
+}
+
+/* Mostrar con teclado */
+.link_nav:focus-visible::before {
+    opacity: 1;
+}
+
+
+/* Barrita bajo el ícono, escondida por defecto */
+.link_nav::after {
+    content: "";
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    width: 16px;
+    height: 3px;
+    border-radius: 999px;
+    background: currentColor;
+     opacity: 1;
+    transform: translateX(-50%) scaleX(0);
+    transition: transform 0.25s ease;
+}
+
+.link_nav:hover {
+    color: var(--nav-accent);
+    transform: translateY(-3px);
+    transition:0.20s ease;
+    cursor: pointer;
+}
+
+.link_nav[aria-current="page"] {
+    color: var(--nav-accent);
+}
+
+.link_nav[aria-current="page"]::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+/* Para quien navega con teclado */
+.link_nav:focus-visible {
+    outline: 2px solid var(--nav-accent);
+    outline-offset: 2px;
+    border-radius: 12px;
+}
+
+
+
+/* Izquierda */
+
+
+/* Variante: la barra pasa al lado derecho */
+.nav_flotante.derecha {
+    left: auto;
+    right: 20px;
+    --desde: 20px 0;   /* la animación de entrada llega desde la derecha */
+}
+
+/* Enlaces: ahora también animan el movimiento del hover */
+.link_nav {
+    /* ...lo que ya tenías... */
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.link_nav:hover {
+    color: var(--nav-accent);
+    transform: translateY(-3px);
+}
+
+/* El botón de orientación debe verse igual que los enlaces */
+.btn_orientacion {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+/* Mostrar con mouse, solo en dispositivos que tengan hover */
+@media (hover: hover) {
+    .link_nav:hover::before {
+        opacity: 1;
+    }
+}
+
+@keyframes aparecer {
+    from { opacity: 0; translate: var(--desde, -20px 0); }
+    to   { opacity: 1; translate: 0 0; }
+}
